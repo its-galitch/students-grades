@@ -1,0 +1,8 @@
+<canvas width="400" height="300"
+        *ngIf="barChartData$ | async as barChartData"
+        baseChart
+        type="line"
+        [options]="barChartOptions"
+        [data]="barChartData"
+>
+</canvas>

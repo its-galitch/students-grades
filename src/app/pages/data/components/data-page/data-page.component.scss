@@ -1,0 +1,24 @@
+:host {
+
+    .data-page {
+        display: flex;
+        flex-direction: column;
+
+        .filter {
+
+        }
+
+        .trainees-container {
+            display: flex;
+            flex-direction: row;
+
+            .trainee-grades-list {
+                width: 60%;
+            }
+
+            .trainee-details {
+                width: 40%;
+            }
+        }
+    }
+}

@@ -1,0 +1,67 @@
+<ng-container cdkDropListGroup>
+    <div class="charts-container" >
+        <div class="display display--first"
+             (drop)="droppedToFirst($event)" (dragover)="onDragOver($event)">
+
+            <div class="chart" draggable="true"
+                 (dragstart)="onChartDrag($event, firstDisplayName)">
+
+                @switch (firstDisplayName) {
+                    @case ('chart1'){
+                        <div style="width: 100%; height: 100%; text-align: center">
+                            <app-students-grades-avg-over-time/>
+
+                        </div>
+                    }
+                    @case ('chart2'){
+                        <div style="width: 100%; height: 100%; text-align: center">
+                            <app-grades-avg-pr-subject/>
+                        </div>
+                    }
+                    @case ('chart3'){
+                        <div style="width: 100%; height: 100%; text-align: center">
+                            <app-students-avg-by-ids/>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="display display--last"
+             (drop)="droppedToLast($event)" (dragover)="onDragOver($event)">
+
+            <div class="chart" draggable="true"
+                 (dragstart)="onChartDrag($event, lastDisplayName)">
+
+                @switch (lastDisplayName) {
+                    @case ('chart1'){
+                        <div style="width: 100%; height: 100%; text-align: center">
+                            <app-students-grades-avg-over-time/>
+                        </div>
+                    }
+                    @case ('chart2'){
+                        <div style="width: 100%; height: 100%; text-align: center">
+                            <app-grades-avg-pr-subject/>
+                        </div>
+                    }
+                    @case ('chart3'){
+                        <div style="width: 100%; height: 100%; text-align: center">
+                            <app-students-avg-by-ids/>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+    </div>
+    <div class="button-container">
+        <div
+
+            class="draggable-button"
+            draggable="true"
+            (dragstart)="onChartDrag($event, buttonDisplayName)"
+
+        >Draggable Button</div>
+    </div>
+
+
+</ng-container>

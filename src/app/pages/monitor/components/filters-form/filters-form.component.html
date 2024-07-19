@@ -1,0 +1,25 @@
+<form [formGroup]="filterFormGroup" class="monitor-filter-form">
+    <mat-form-field appearance="outline">
+        <mat-label>IDs</mat-label>
+
+        <mat-select type="text" matInput multiple formControlName="ids">
+            <mat-select-trigger>
+                {{ filterFormGroup.get('ids')?.value || '' }}
+            </mat-select-trigger>
+            @for (studentId of studentsIds$ | async; track studentId) {
+                <mat-option [value]="studentId">
+                    {{ studentId }}
+                </mat-option>
+            }
+        </mat-select>
+
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Names</mat-label>
+        <input type="text" matInput formControlName="nameFilter"/>
+    </mat-form-field>
+    <section class="state-checkbox-container">
+        <mat-checkbox [formControl]="markPassed">Passed</mat-checkbox>
+        <mat-checkbox [formControl]="markFailed">Failed</mat-checkbox>
+    </section>
+</form>

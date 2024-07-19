@@ -1,0 +1,44 @@
+:host {
+    .form-container {
+        display: flex;
+        flex-direction: column;
+
+        padding-inline: 20px;
+
+        .managing-buttons-container {
+            display: flex;
+            flex-direction: row;
+
+            padding-top: 20px;
+            padding-bottom: 20px;
+
+
+            & > button {
+                width: 150px;
+
+                &:not(:first-child) {
+                    margin-left: 30px;
+                }
+            }
+        }
+
+        .details-row {
+            display: flex;
+            flex-direction: row;
+
+            :not(:last-child) {
+                margin-right: 30px;
+            }
+        }
+
+
+        .detail-field {
+            width: 45%;
+        }
+
+        .save-button {
+            width: 46%;
+            height: 50px;
+        }
+    }
+}

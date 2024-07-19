@@ -1,0 +1,11 @@
+tr{
+    &.is-passed {
+        background-color: rgba(40, 180, 133, 0.8);
+    }
+
+    &.is-failed {
+        background-color: rgba(238, 143, 143, 0.8);
+    }
+
+}
+

@@ -1,0 +1,28 @@
+<form [formGroup]="selectorsFormGroup" class="selector-form">
+    <mat-form-field appearance="outline" style="width: 40%">
+        <mat-label>IDs</mat-label>
+        <mat-select multiple formControlName="ids">
+            <mat-select-trigger>
+                {{ selectorsFormGroup.get('ids')?.value || ''}}
+            </mat-select-trigger>
+            @for(studentId of studentsIds$ | async; track studentId) {
+                <mat-option [value]="studentId">
+                    {{ studentId }}
+                </mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="width: 40%">
+        <mat-label>Subjects</mat-label>
+        <mat-select multiple formControlName="subjects">
+            <mat-select-trigger>
+                {{ selectorsFormGroup.get('subjects')?.value || ''}}
+            </mat-select-trigger>
+            @for(subject of subjects$| async; track subject) {
+                <mat-option [value]="subject">
+                    {{ subject }}
+                </mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+</form>

@@ -1,0 +1,98 @@
+<div class="form-container">
+    <div class="managing-buttons-container">
+        <button mat-flat-button color="primary" (click)="openNewRecordForm()">New</button>
+        <button mat-flat-button color="accent"
+                (click)="deleteRecord()"
+                [disabled]="formMode!=FormModeValues.Edit">
+            Delete
+        </button>
+    </div>
+    @if(formMode === FormModeValues.Edit || formMode === FormModeValues.New) {
+        <h2>Details:</h2>
+        <div class="details-row">
+            <mat-form-field style="width: 200px" class="detail-field" appearance="outline">
+                <mat-label>Trainee ID:</mat-label>
+                <input type="number" matInput [formControl]="traineeIdFormControl">
+            </mat-form-field>
+            <mat-form-field class="detail-field" appearance="outline">
+                <mat-label>Name:</mat-label>
+                <input type="text" matInput [formControl]="nameFormControl">
+            </mat-form-field>
+        </div>
+
+        <div class="details-row">
+            <mat-form-field style="width: 100px" class="detail-field" appearance="outline">
+                <mat-label>ID:</mat-label>
+                <input type="number" matInput [formControl]="idFormControl">
+            </mat-form-field>
+
+            <mat-form-field class="detail-field" appearance="outline" >
+                <mat-label>Date:</mat-label>
+                <input matInput [matDatepicker]="date"  [formControl]="dateFormControl">
+                <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+                <mat-datepicker #date></mat-datepicker>
+            </mat-form-field>
+
+        </div>
+
+        <div class="details-row">
+            <mat-form-field style="width: 130px" appearance="outline">
+                <mat-label>Grade:</mat-label>
+                <input type="number" matInput [formControl]="gradeFormControl">
+            </mat-form-field>
+
+            <mat-form-field class="detail-field" appearance="outline">
+                <mat-label>Subject:</mat-label>
+                <input type="text" matInput [formControl]="subjectFormControl">
+            </mat-form-field>
+        </div>
+
+        <div class="details-row">
+            <mat-form-field class="detail-field" appearance="outline">
+                <mat-label>Email:</mat-label>
+                <input type="email" matInput [formControl]="emailFormControl">
+            </mat-form-field>
+
+            <mat-form-field class="detail-field" appearance="outline" >
+                <mat-label>Date Joined:</mat-label>
+                <input matInput [matDatepicker]="dateJoined"  [formControl]="dateJoinedFormControl">
+                <mat-datepicker-toggle matIconSuffix [for]="dateJoined"></mat-datepicker-toggle>
+                <mat-datepicker #dateJoined></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div class="details-row">
+            <mat-form-field class="detail-field" appearance="outline">
+                <mat-label>Address:</mat-label>
+                <input type="text" matInput [formControl]="addressFormControl">
+            </mat-form-field>
+            <mat-form-field class="detail-field" appearance="outline">
+                <mat-label>City:</mat-label>
+                <input type="text" matInput [formControl]="cityFormControl">
+            </mat-form-field>
+        </div>
+
+        <div class="details-row">
+            <mat-form-field class="detail-field" appearance="outline">
+                <mat-label>ZIP:</mat-label>
+                <input type="text" matInput [formControl]="zipFormControl">
+            </mat-form-field>
+            <button mat-flat-button
+                    color="primary"
+                    class="save-button"
+                    (click)="onSave()">Save
+            </button>
+        </div>
+    }
+    @else {
+        <p>
+            Select row to see and edit details
+        </p>
+        <p>
+            Or click "New" to create a new record
+        </p>
+    }
+
+
+
+</div>

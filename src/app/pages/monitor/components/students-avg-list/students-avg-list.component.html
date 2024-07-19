@@ -1,0 +1,15 @@
+<table mat-table [dataSource]="studentsExamsAvg$" class="mat-elevation-z8">
+
+    @for (columnName of columnsToDisplay$ | async; track columnName) {
+        <ng-container [matColumnDef]="columnName">
+            <th mat-header-cell *matHeaderCellDef>{{ columnName | titlecase }}</th>
+            <td mat-cell *matCellDef="let row"> {{ row[columnName] }}</td>
+        </ng-container>
+    }
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay$ | async"></tr>
+    <tr mat-row
+        [class.is-passed]="(isMarkPassed$ | async) && row['average'] >= 60"
+        [class.is-failed]="(isMarkFailed$ | async) && row['average'] < 60"
+        *matRowDef="let row; columns: (columnsToDisplay$ | async)"></tr>
+</table>

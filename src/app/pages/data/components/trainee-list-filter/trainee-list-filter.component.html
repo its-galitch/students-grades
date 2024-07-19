@@ -1,0 +1,75 @@
+<form class="trainees-filter-form">
+
+    <div class="form-title">
+        Filter:
+    </div>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Column Name</mat-label>
+        <mat-select type="text"
+                    placeholder="Pick one"
+                    aria-label="Number"
+                    matInput
+                    [formControl]="columnNameControl"
+        >
+            @for (option of columnNames(); track option) {
+                <mat-option [value]="option">{{ option | titlecase }}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline" style="width: 170px">
+        <mat-label>Comparison</mat-label>
+        <mat-select type="text"
+                    placeholder="'>' , '<' , '='"
+                    aria-label="Comparison"
+                    matInput
+                    [formControl]="comparisonSignControl">
+
+            @if(stringColumnNames.includes(columnNameControl.valueChanges | async)) {
+                @for (sign of stringComparisonSigns; track sign) {
+                    <mat-option [value]="sign">{{ sign }}</mat-option>
+                }
+            } @else {
+                @for (sign of comparisonSigns; track sign) {
+                    <mat-option [value]="sign">{{ sign }}</mat-option>
+                }
+            }
+
+
+        </mat-select>
+
+    </mat-form-field>
+
+    @switch(columnNameControl.valueChanges | async) {
+
+        @default {
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Comparable Value</mat-label>
+                <input type="text"
+                       matInput
+                       [formControl]="comparableValueControl"/>
+            </mat-form-field>
+        }
+        @case ('date') {
+            <mat-form-field appearance="outline">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker" [formControl]="comparableValueControl">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        }
+
+    }
+
+    <div class="button-container">
+        <button mat-button
+                type="button"
+                color="primary"
+                class="search-button"
+                [disabled]="traineeFilterFormGroup.invalid"
+                (click)="applyFilter()">Search</button>
+    </div>
+</form>
+
